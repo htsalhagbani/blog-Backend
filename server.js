@@ -41,8 +41,13 @@ app.delete('/blog/:id',(req,res)=>{
 app.post('/signup',(req,res)=>{
  const {username,password,age}=req.body;
  let data={username,password,age};
+ const userexist=signup.find(item=>item.username=== username)
+ if(userexist){
+    res.send('This account is exist !!')
+ }else{
  signup.push(data);
  res.json(data);
+}
 })
 
 app.get('/signup',(req,res)=>{
